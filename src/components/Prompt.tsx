@@ -1,8 +1,10 @@
-
+"use client";
 
 import { useState } from "react";
 
 import { note } from "@/utils/interfaces/note";
+import axios from "axios";
+import { responseStatus } from "@/utils/interfaces/api";
 
 export default function Prompt() {
   const [data, setData] = useState({
@@ -10,14 +12,14 @@ export default function Prompt() {
     createdAt: 0,
   } satisfies note);
 
-   function submitHandler() {
+  async function submitHandler() {
     try {
       if (!data.messsage) return;
-      setData({ ...data, createdAt: Date.now() });
-      console.log(data)// replace with axios call
-      setData({...data, messsage: ""})
+      const res = await axios.put("/api/newnote", data);
+      // response data from api
+      const resData = res.data as responseStatus;
+      setData({ messsage: "", createdAt: 0 });
     } catch (err) {
-      console.error(err);
       console.error("something went wrong!!");
     }
   }
@@ -32,7 +34,7 @@ export default function Prompt() {
         <textarea
           className="outline-none resize-none bg-transparent w-full group-focus-within/extend:h-[30vh] md:group-focus-within/extend:h-[20vh]"
           placeholder="Start typing here"
-          onChange={(e) => setData({ ...data, messsage: e.target.value })}
+          onChange={(e) => setData({messsage: e.target.value, createdAt: Date.now() })}
           value={data.messsage}
         />
         <button
