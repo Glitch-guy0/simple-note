@@ -1,5 +1,5 @@
 export default function Header() {
     return (
-        <header className="font-bold text-3xl text-center lg:text-left">Simple Notes</header>
+        <header className="font-light text-3xl text-center mt-2 mb-6">Simple Notes</header>
     )
 }
