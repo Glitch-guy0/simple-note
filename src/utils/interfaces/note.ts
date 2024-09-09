@@ -1,4 +1,4 @@
 export type note = {
-    messsage: string
+    message: string
     createdAt: number
 }

@@ -2,9 +2,7 @@ import { responseStatus } from "@/utils/interfaces/api";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(request: NextRequest){
-    const uriPath = request.nextUrl.pathname;
     var resmessage: responseStatus;
-    console.log(uriPath)
 
     const requestBody = await request.json();
 
