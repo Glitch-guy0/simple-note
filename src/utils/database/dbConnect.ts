@@ -16,5 +16,7 @@ export default async function Connect(){
     }
     catch(err){
         console.error("db: something went wrong!!");
+    }finally{
+        pool.end();
     }
 }

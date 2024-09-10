@@ -6,6 +6,7 @@ import Card from "@/components/Card";
 import { notes } from "@/utils/interfaces/api";
 import { TbReload } from "react-icons/tb";
 import axios from "axios";
+import toast from "react-hot-toast";
 export default function ListNotes() {
   const [notes, setNotes] = useState<notes>([]);
 
@@ -14,11 +15,24 @@ export default function ListNotes() {
       const res = await axios.get("/api/getnotes");
       const resData = await res.data as notes;
       if(resData){
-        alert('reloaded successfully');
+        toast('Reloaded Successfully', {
+          style: {
+            background: '#03C03C',
+            color: 'white',
+            fontWeight: 'bold'
+          }
+        });
       }
       setNotes(resData);
     } catch (err) {
       console.error("something went wrong!!");
+      toast('Something went wrong', {
+        style: {
+          background: '#DC143C',
+          color: 'white',
+          fontWeight: 'bold'
+        }
+      });
     }
   }
 

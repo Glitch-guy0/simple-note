@@ -5,9 +5,11 @@ import { useState } from "react";
 import { note } from "@/utils/interfaces/note";
 import axios from "axios";
 import { responseStatus } from "@/utils/interfaces/api";
+import toast from "react-hot-toast";
 
 export default function Prompt() {
   const [data, setData] = useState({
+    id: 0,
     message: "",
     createdAt: 0,
   } satisfies note);
@@ -19,11 +21,25 @@ export default function Prompt() {
       // response data from api
       const resData = await res.data as responseStatus;
       if(resData.status){
-        alert('completed');
+        toast('Added Successfully\nReload to see changes', {
+          style: {
+            background: '#03C03C',
+            color: 'white',
+            fontWeight: 'bold'
+          }
+        });
       }
-      setData({ message: "", createdAt: 0 });
+      setData({...data, message: "", createdAt: 0 });
     } catch (err) {
       console.error("something went wrong!!");
+      toast('Something went wrong', {
+        style: {
+          background: '#DC143C',
+          color: 'white',
+          fontWeight: 'bold'
+        }
+      });
+      
     }
   }
   return (
@@ -37,7 +53,7 @@ export default function Prompt() {
         <textarea
           className="outline-none resize-none bg-transparent w-full group-focus-within/extend:h-[30vh] md:group-focus-within/extend:h-[20vh]"
           placeholder="Start typing here"
-          onChange={(e) => setData({message: e.target.value, createdAt: Date.now() })}
+          onChange={(e) => setData({...data,message: e.target.value, createdAt: Date.now() })}
           value={data.message}
         />
         <button

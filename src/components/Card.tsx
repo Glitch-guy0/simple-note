@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import toast from "react-hot-toast";
 import { TiDelete } from "react-icons/ti";
 
 
@@ -13,12 +14,24 @@ export default function Card(props:{message:string, createdAt:number, id: number
       const res = await axios.delete("/api/delnotes", {data: note});
       // response signals
       if (res){
-        alert('removed successfully');
+        toast('Removed Successfully\nReload to see changes', {
+          style: {
+            background: '#03C03C',
+            color: 'white',
+            fontWeight: 'bold'
+          }
+        });
       }
-      console.log(res.data);
     }
     catch(err){
       console.error("something went wrong!!");
+      toast('Something went wrong', {
+        style: {
+          background: '#DC143C',
+          color: 'white',
+          fontWeight: 'bold'
+        }
+      });
     }
   }
 
