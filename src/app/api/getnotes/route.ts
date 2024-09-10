@@ -1,23 +1,19 @@
+import Connect from "@/utils/database/dbConnect";
 import { notes } from "@/utils/interfaces/api";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export function GET(req: NextRequest){
-    const date = Date.now();
-    const notes = [
-        {
-            message: "note 1",
-            createdAt: date+10
-        }, 
-        {
-            message: "note 2",
-            createdAt: date+20
-        },
-        {
-            message: "note 3",
-            createdAt: date+30
-        }
-    ]
-    
-    return NextResponse.json(notes);
+export async function GET(req: NextRequest){
+
+    try{
+
+        const connection = await Connect();
+        const query = `SELECT * FROM notes ORDER BY createdAt DESC;`
+        const result = await connection?.query(query);
+        connection?.end();
+        return NextResponse.json(result);
+
+    }catch(err){
+        console.error("something went wrong!!");
+    }
 }
