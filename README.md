@@ -13,7 +13,7 @@ Ensure you have the following installed:
 - Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/simple-notes-app.git
+git clone https://github.com/Glitch-guy0/simple-note.git
 cd simple-notes-app
 ```
 
