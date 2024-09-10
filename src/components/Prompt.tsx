@@ -17,14 +17,17 @@ export default function Prompt() {
       if (!data.message) return;
       const res = await axios.put("/api/newnote", data);
       // response data from api
-      const resData = res.data as responseStatus;
+      const resData = await res.data as responseStatus;
+      if(resData.status){
+        alert('completed');
+      }
       setData({ message: "", createdAt: 0 });
     } catch (err) {
       console.error("something went wrong!!");
     }
   }
   return (
-    <div id='remove-focus' className="relative group/extend ">
+    <div className="relative group/extend ">
       <div
         className=" relative ring-1 ring-slate-800 group-focus-within/extend:ring-blue-800 rounded-xl overflow-hidden p-2 gap-2
           flex justify-end 

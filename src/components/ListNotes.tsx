@@ -12,7 +12,10 @@ export default function ListNotes() {
   async function getNotes() {
     try {
       const res = await axios.get("/api/getnotes");
-      const resData = res.data as notes;
+      const resData = await res.data as notes;
+      if(resData){
+        alert('reloaded successfully');
+      }
       setNotes(resData);
     } catch (err) {
       console.error("something went wrong!!");
@@ -33,9 +36,10 @@ export default function ListNotes() {
         {notes.length > 0 ? (
           notes.map((note) => (
             <Card
-              key={note.createdAt}
+              key={note.id}
               message={note.message}
               createdAt={note.createdAt}
+              id = {note.id}
             />
           ))
         ) : (

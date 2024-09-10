@@ -4,13 +4,17 @@ import { TiDelete } from "react-icons/ti";
 
 
 
-export default function Card(props:{message:string, createdAt:number}) {
+export default function Card(props:{message:string, createdAt:number, id: number}) {
 
   async function deleteMessage(id: number){
     try{
       const note = {id}
+
       const res = await axios.delete("/api/delnotes", {data: note});
       // response signals
+      if (res){
+        alert('removed successfully');
+      }
       console.log(res.data);
     }
     catch(err){
@@ -22,7 +26,7 @@ export default function Card(props:{message:string, createdAt:number}) {
     <div className="w-full bg-gray-900 rounded ring-1 ring-slate-700">
       <div className="relative">
         <TiDelete className="text-rose-500 text-3xl float-end md:absolute md:top-[-13px] md:right-[-13px]" 
-        onClick={() => deleteMessage(props.createdAt)}
+        onClick={() => deleteMessage(props.id)}
         />
       </div>
       <div className="px-4 py-2">

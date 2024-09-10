@@ -5,8 +5,7 @@ export default async function migrate() {
   try {
 
     
-    await connection?.query("CREATE TABLE notes (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,message VARCHAR(255) NOT NULL,createdAt INT NOT NULL);")
-    // await connection?.query('insert into newtable(name) values (?);', ['hello'])
+    await connection?.query("CREATE TABLE notes (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,message VARCHAR(255) NOT NULL,createdAt BIGINT NOT NULL);")
     .then(value => {
         console.log('migration completed')
     })
