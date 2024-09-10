@@ -1,6 +1,10 @@
 import mariadb from 'mariadb';
 
 
+/**
+ * Connects to the database and returns a connection object
+ * @returns {Promise<import('mariadb').Connection>}
+ */
 export default async function Connect(){
     const pool = mariadb.createPool({
         host: "localhost",

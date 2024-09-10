@@ -1,5 +1,13 @@
 import Connect from "@/utils/database/dbConnect";
 
+/**
+ * Creates the notes table in the database, if it does not already exist
+ * It is recommended to run this function once when setting up the database
+ * It will print a success message to the console if the migration is successful
+ * If the migration fails, it will print an error message to the console
+ * After executing the migration, it will exit the process
+ * @returns {Promise<void>}
+ */
 export default async function migrate() {
   const connection = await Connect();
   try {

@@ -3,6 +3,13 @@ import { responseStatus } from "@/utils/interfaces/api";
 import { NextRequest, NextResponse } from "next/server";
 import { note } from "@/utils/interfaces/note";
 
+    /**
+     * Handles PUT requests to /api/newnote
+     * Creates a new note with the given message and createdAt
+     * Returns a response with a status of true if successful, false otherwise
+     * @param {NextRequest} request - The request containing the note to be created
+     * @returns {NextResponse} - The response from the API
+     */
 export async function PUT(request: NextRequest){
     var resmessage: responseStatus = {
         message: "something went wrong!!",

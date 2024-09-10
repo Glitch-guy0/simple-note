@@ -2,6 +2,12 @@ import Connect from "@/utils/database/dbConnect";
 import { notes } from "@/utils/interfaces/api";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Handles GET requests to /api/getnotes
+ * Returns a list of notes sorted by createdAt DESC
+ * @param {NextRequest} req - The request object
+ * @returns {NextResponse} - The response object
+ */
 export async function GET(req: NextRequest){
     const connection = await Connect();
     let data:notes = [];
